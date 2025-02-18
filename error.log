@@ -1,0 +1,772 @@
+
+➜  nginx-keycloak git:(main) ✗ docker-compose up
+[+] Running 2/2
+ ✔ Network nginx-keycloak_default  Created                                                                                                                                                       0.1s 
+ ✔ Container nginx-server          Created                                                                                                                                                       0.0s 
+Attaching to nginx-server
+nginx-server  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server  | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server  | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server  | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:33 +0000] "GET / HTTP/1.1" 200 26 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server  | 192.168.65.1 - user1 [18/Feb/2025:05:15:35 +0000] "GET / HTTP/1.1" 200 38 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:37 +0000] "GET / HTTP/1.1" 200 26 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:40 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:40 +0000] "GET /apple-touch-icon.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:40 +0000] "GET /favicon.ico HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:40 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server  | 192.168.65.1 - - [18/Feb/2025:05:15:40 +0000] "GET /apple-touch-icon.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+➜  nginx-keycloak git:(main) ✗ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        docker-compose.yml
+        nginx/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+➜  nginx-keycloak git:(main) ✗ git add .
+➜  nginx-keycloak git:(main) ✗ git commit -m "initial" 
+[main 7240a41] initial
+ 10 files changed, 79 insertions(+), 2 deletions(-)
+ create mode 100644 docker-compose.yml
+ create mode 100644 nginx/auth/.htpasswd
+ create mode 100644 nginx/html/site1/index.html
+➜  nginx-keycloak git:(main) docker-compose up
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               0.7s 
+[+] Running 3/3
+ ✔ Network nginx-keycloak_default  Created                                                                                                                                                       0.1s 
+ ✔ Container keycloak-server       Created                                                                                                                                                       0.0s 
+ ✔ Container nginx-server          Created                                                                                                                                                       0.0s 
+Attaching to keycloak-server, nginx-server
+keycloak-server  | #
+keycloak-server  | # A fatal error has been detected by the Java Runtime Environment:
+keycloak-server  | #
+keycloak-server  | #  SIGILL (0x4) at pc=0x0000ffff96f3fc5c, pid=78, tid=79
+keycloak-server  | #
+keycloak-server  | # JRE version:  (21.0.6+7) (build )
+keycloak-server  | # Java VM: OpenJDK 64-Bit Server VM (21.0.6+7-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, linux-aarch64)
+keycloak-server  | # Problematic frame:
+keycloak-server  | # j  java.lang.System.registerNatives()V+0 java.base
+keycloak-server  | #
+keycloak-server  | # No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+keycloak-server  | #
+keycloak-server  | # An error report file with more information is saved as:
+keycloak-server  | # /tmp/hs_err_pid78.log
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+keycloak-server  | [0.045s][warning][os] Loading hsdis library failed
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+keycloak-server  | #
+keycloak-server  | # The crash happened outside the Java Virtual Machine in native code.
+keycloak-server  | # See problematic frame for where to report the bug.
+keycloak-server  | #
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+keycloak-server  | /opt/keycloak/bin/kc.sh: line 169:    78 Aborted                 'java' -Dkc.config.build-and-exit=true -Djava.util.concurrent.ForkJoinPool.common.threadFactory=io.quarkus.bootstrap.forkjoin.QuarkusForkJoinWorkerThreadFactory '-XX:MetaspaceSize=96M' '-XX:MaxMetaspaceSize=256m' '-Dfile.encoding=UTF-8' '-Dsun.stdout.encoding=UTF-8' '-Dsun.err.encoding=UTF-8' '-Dstdout.encoding
+➜  nginx-keycloak git:(main) ✗ docker-compose up  
+[+] Running 3/3
+ ✔ Network nginx-keycloak_default  Created                                                                                                                                                       0.1s 
+ ✔ Container keycloak-server       Created                                                                                                                                                       0.0s 
+ ✔ Container nginx-server          Created                                                                                                                                                       0.0s 
+Attaching to keycloak-server, nginx-server
+keycloak-server  | #
+keycloak-server  | # A fatal error has been detected by the Java Runtime Environment:
+keycloak-server  | #
+keycloak-server  | #  SIGILL (0x4) at pc=0x0000ffffa2f3fc5c, pid=78, tid=79
+keycloak-server  | #
+keycloak-server  | # JRE version:  (21.0.6+7) (build )
+keycloak-server  | # Java VM: OpenJDK 64-Bit Server VM (21.0.6+7-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, linux-aarch64)
+keycloak-server  | # Problematic frame:
+keycloak-server  | # j  java.lang.System.registerNatives()V+0 java.base
+keycloak-server  | #
+keycloak-server  | # No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+keycloak-server  | #
+keycloak-server  | # An error report file with more information is saved as:
+keycloak-server  | # /tmp/hs_err_pid78.log
+keycloak-server  | [0.013s][warning][os] Loading hsdis library failed
+keycloak-server  | #
+keycloak-server  | # The crash happened outside the Java Virtual Machine in native code.
+keycloak-server  | # See problematic frame for where to report the bug.
+keycloak-server  | #
+keycloak-server  | /opt/keycloak/bin/kc.sh: line 169:    78 Aborted                 'java' -Dkc.config.build-and-exit=true -Djava.util.concurrent.ForkJoinPool.common.threadFactory=io.quarkus.bootstr
+➜  nginx-keycloak git:(main) ✗ docker-compose up
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               1.0s 
+[+] Running 2/2
+ ✔ Container nginx-server     Created                                                                                                                                                            0.0s 
+ ✔ Container keycloak-server  Recreated                                                                                                                                                          0.0s 
+Attaching to keycloak-server, nginx-server
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-server     | 2025/02/18 05:20:43 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 0
+nginx-server     | 2025/02/18 05:20:43 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:20:44 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:20:44 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:20:45 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+keycloak-server  | Updating the configuration and installing your custom providers, if any. Please wait.
+nginx-server     | 2025/02/18 05:20:47 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:20:50 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+keycloak-server  | 2025-02-18 05:20:48,273 WARN  [io.qua.config] (build-89) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:20:51,867 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-80) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+keycloak-server  | 2025-02-18 05:20:51,871 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-80) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+nginx-server     | 2025/02/18 05:20:57 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+keycloak-server  | 2025-02-18 05:21:07,758 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 21295ms
+keycloak-server  | Running the server in development mode. DO NOT use this configuration in production.
+nginx-server     | 2025/02/18 05:21:10 [emerg] 1#1: host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server     | nginx: [emerg] host not found in upstream "site3-backend" in /etc/nginx/conf.d/site3.conf:6
+nginx-server exited with code 1
+keycloak-server  | 2025-02-18 05:21:09,323 ERROR [org.keycloak.quarkus.runtime.configuration.mappers.PropertyMappers] (main) Hostname v1 options [proxy] are still in use, please review your configuration
+keycloak-server  | 2025-02-18 05:21:09,439 WARN  [io.quarkus.config] (main) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:21:10,345 INFO  [org.keycloak.url.HostnameV2ProviderFactory] (main) If hostname is specified, hostname-strict is effectively ignored
+keycloak-server  | 2025-02-18 05:21:12,114 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+keycloak-server  | 2025-02-18 05:21:12,183 INFO  [io.agroal.pool] (JPA Startup Thread) Datasource '<default>': Initial size smaller than min. Connections will be created when necessary
+keycloak-server  | 2025-02-18 05:21:12,201 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+keycloak-server  | 2025-02-18 05:21:12,401 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+keycloak-server  | 2025-02-18 05:21:12,678 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (ForkJoinPool.commonPool-worker-1) ISPN000107: Retrieving transaction manager Transaction: unknown
+keycloak-server  | 2025-02-18 05:21:14,063 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa
+➜  nginx-keycloak git:(main) ✗ docker-compose up  
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               0.7s 
+[+] Running 5/5
+ ✔ Network nginx-keycloak_mynetwork  Created                                                                                                                                                     0.1s 
+ ✔ Network nginx-keycloak_default    Created                                                                                                                                                     0.1s 
+ ✔ Container site3-backend           Created                                                                                                                                                     0.0s 
+ ✔ Container keycloak-server         Created                                                                                                                                                     0.0s 
+ ✔ Container nginx-server            Created                                                                                                                                                     0.0s 
+Attaching to keycloak-server, nginx-server, site3-backend
+site3-backend    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+site3-backend    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+site3-backend    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+site3-backend    | /docker-entrypoint.sh: Configuration complete; ready for start up
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: using the "epoll" event method
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: nginx/1.27.4
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: OS: Linux 6.12.5-linuxkit
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker processes
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 28
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 29
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 30
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 31
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 32
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 33
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 34
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 35
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 36
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 37
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 38
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 39
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 40
+site3-backend    | 2025/02/18 05:27:14 [notice] 1#1: start worker process 41
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+nginx-server     | 2025/02/18 05:27:14 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 0
+nginx-server     | 2025/02/18 05:27:14 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:27:14 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:27:15 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+keycloak-server  | Updating the configuration and installing your custom providers, if any. Please wait.
+nginx-server     | 2025/02/18 05:27:16 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:27:17 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+nginx-server     | 2025/02/18 05:27:21 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+keycloak-server  | 2025-02-18 05:27:18,694 WARN  [io.qua.config] (build-89) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:27:22,435 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-3) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+keycloak-server  | 2025-02-18 05:27:22,441 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-3) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+nginx-server     | 2025/02/18 05:27:27 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+keycloak-server  | 2025-02-18 05:27:39,601 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 22781ms
+nginx-server     | 2025/02/18 05:27:40 [emerg] 1#1: host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server     | nginx: [emerg] host not found in upstream "keycloak" in /etc/nginx/conf.d/site3.conf:16
+nginx-server exited with code 1
+keycloak-server  | Running the server in development mode. DO NOT use this configuration in production.
+keycloak-server  | 2025-02-18 05:27:41,242 ERROR [org.keycloak.quarkus.runtime.configuration.mappers.PropertyMappers] (main) Hostname v1 options [proxy] are still in use, please review your configuration
+keycloak-server  | 2025-02-18 05:27:41,357 WARN  [io.quarkus.config] (main) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:27:41,762 INFO  [org.keycloak.url.HostnameV2ProviderFactory] (main) If hostname is specified, hostname-strict is effectively ignored
+keycloak-server  | 2025-02-18 05:27:43,995 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+keycloak-server  | 2025-02-18 05:27:44,069 INFO  [io.agroal.pool] (JPA Startup Thread) Datasource '<default>': Initial size smaller than min. Connections will be created when necessary
+keycloak-server  | 2025-02-18 05:27:44,091 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+keycloak-server  | 2025-02-18 05:27:44,302 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+keycloak-server  | 2025-02-18 05:27:44,600 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (ForkJoinPool.commonPool-worker-1) ISPN000107: Retrieving transaction manager Transaction: unknown
+keycloak-server  | 2025-02-18 05:27:45,994 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+keycloak-server  | 2025-02-18 05:27:49,427 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:27:49,864 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_344409, Site name: null
+➜  nginx-keycloak git:(main) ✗ docker-compose up  
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               0.5s 
+[+] Running 4/4
+ ✔ Network nginx-keycloak_mynetwork  Created                                                                                                                                                     0.1s 
+ ✔ Container site3-backend           Created                                                                                                                                                     0.0s 
+ ✔ Container keycloak-server         Created                                                                                                                                                     0.0s 
+ ✔ Container nginx-server            Created                                                                                                                                                     0.0s 
+Attaching to keycloak-server, nginx-server, site3-backend
+site3-backend    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+site3-backend    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+site3-backend    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+site3-backend    | /docker-entrypoint.sh: Configuration complete; ready for start up
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: using the "epoll" event method
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: nginx/1.27.4
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: OS: Linux 6.12.5-linuxkit
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker processes
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 29
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 30
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 31
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 32
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 33
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 34
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 35
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 36
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 37
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 38
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 39
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 40
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 41
+site3-backend    | 2025/02/18 05:30:37 [notice] 1#1: start worker process 42
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+keycloak-server  | Updating the configuration and installing your custom providers, if any. Please wait.
+keycloak-server  | 2025-02-18 05:30:42,176 WARN  [io.qua.config] (build-91) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:30:45,721 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-85) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+keycloak-server  | 2025-02-18 05:30:45,730 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-85) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:31:01 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:31:03,366 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 22958ms
+nginx-server     | 192.168.65.1 - user1 [18/Feb/2025:05:31:03 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | Running the server in development mode. DO NOT use this configuration in production.
+nginx-server     | 2025/02/18 05:31:06 [error] 29#29: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: site3.local, request: "GET / HTTP/1.1", subrequest: "/auth", upstream: "http://172.23.0.2:8080/realms/myrealm/protocol/openid-connect/userinfo", host: "site3.local"
+nginx-server     | 2025/02/18 05:31:06 [error] 29#29: *5 auth request unexpected status: 502 while sending to client, client: 192.168.65.1, server: site3.local, request: "GET / HTTP/1.1", host: "site3.local"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:31:06 +0000] "GET / HTTP/1.1" 500 177 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server     | 2025/02/18 05:31:06 [error] 29#29: *7 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: site3.local, request: "GET /apple-touch-icon-precomposed.png HTTP/1.1", subrequest: "/auth", upstream: "http://172.23.0.2:8080/realms/myrealm/protocol/openid-connect/userinfo", host: "site3.local"
+nginx-server     | 2025/02/18 05:31:06 [error] 29#29: *7 auth request unexpected status: 502 while sending to client, client: 192.168.65.1, server: site3.local, request: "GET /apple-touch-icon-precomposed.png HTTP/1.1", host: "site3.local"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:31:06 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 500 177 "-" "Safari/20620.2.4.11.5 CFNetwork/3826.400.120 Darwin/24.3.0"
+nginx-server     | 2025/02/18 05:31:06 [error] 29#29: *9 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: site3.local, request: "GET /apple-touch-icon.png HTTP/1.1", subrequest: "/auth", upstream: "http://172.23.0.2:8080/realms/myrealm/protocol/openid-connect/userinfo", host: "site3.local"
+nginx-server     | 2025/02/18 05:31:06 [error] 29#29: *9 auth request unexpected status: 502 while sending to client, client: 192.168.65.1, server: site3.local, request: "GET /apple-touch-icon.png HTTP/1.1", host: "site3.local"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:31:06 +0000] "GET /apple-touch-icon.png HTTP/1.1" 500 177 "-" "Safari/20620.2.4.11.5 CFNetwork/3826.400.120 Darwin/24.3.0"
+keycloak-server  | 2025-02-18 05:31:04,931 ERROR [org.keycloak.quarkus.runtime.configuration.mappers.PropertyMappers] (main) Hostname v1 options [proxy] are still in use, please review your configuration
+keycloak-server  | 2025-02-18 05:31:05,048 WARN  [io.quarkus.config] (main) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:31:05,861 INFO  [org.keycloak.url.HostnameV2ProviderFactory] (main) If hostname is specified, hostname-strict is effectively ignored
+keycloak-server  | 2025-02-18 05:31:07,646 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+keycloak-server  | 2025-02-18 05:31:07,723 INFO  [io.agroal.pool] (JPA Startup Thread) Datasource '<default>': Initial size smaller than min. Connections will be created when necessary
+keycloak-server  | 2025-02-18 05:31:07,748 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+keycloak-server  | 2025-02-18 05:31:07,956 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+keycloak-server  | 2025-02-18 05:31:08,255 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (ForkJoinPool.commonPool-worker-1) ISPN000107: Retrieving transaction manager Transaction: unknown
+keycloak-server  | 2025-02-18 05:31:09,624 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+keycloak-server  | 2025-02-18 05:31:13,061 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:31:13,470 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_564273, Site name: null
+keycloak-server  | 2025-02-18 05:31:13,657 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+keycloak-server  | 2025-02-18 05:31:13,734 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+keycloak-server  | 2025-02-18 05:31:15,270 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN' is deprecated, use 'KC_BOOTSTRAP_ADMIN_USERNAME' instead
+keycloak-server  | 2025-02-18 05:31:15,271 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN_PASSWORD' is deprecated, use 'KC_BOOTSTRAP_ADMIN_PASSWORD' instead
+keycloak-server  | 2025-02-18 05:31:15,498 INFO  [org.keycloak.services] (main) KC-SERVICES0077: Created temporary admin user with username admin
+keycloak-server  | 2025-02-18 05:31:15,538 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:31:15,647 INFO  [io.quarkus] (main) Keycloak 26.1.2 on JVM (powered by Quarkus 3.15.3) started in 11.831s. Listening on: http://0.0.0.0:8080
+keycloak-server  | 2025-02-18 05:31:15,648 INFO  [io.quarkus] (main) Profile dev activated. 
+keycloak-server  | 2025-02-18 05:31:15,648 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, narayana-jta, opentelemetry, reactive-routes, rest, rest-jackson, smallrye-context-propagation, vertx]
+keycloak-server  | 2025-02-18 05:31:20,803 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-1) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:31:21,247 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-2) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:31:24,241 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-4) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:33:49,595 WARN  [org.keycloak.events] (executor-thread-7) type="USER_INFO_REQUEST_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:33:49 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:34:54,964 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-7) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:35:01,379 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:35:01,430 WARN  [org.keycloak.events] (executor-thread-11) type="LOGIN_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="cookie_not_found"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:35:12 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:35:15,779 WARN  [org.keycloak.events] (executor-thread-10) type="USER_INFO_REQUEST_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:35:15 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:35:15,793 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-10) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:35:30,842 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-10) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:35:30,889 WARN  [org.keycloak.events] (executor-thread-10) type="LOGIN_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="cookie_not_found"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:38:00 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:38:11,444 WARN  [org.keycloak.events] (executor-thread-16) type="USER_INFO_REQUEST_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:38:11 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:38:11,480 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-16) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:38:17,239 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-18) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:38:17,260 WARN  [org.keycloak.events] (executor-thread-18) type="LOGIN_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="cookie_not_found"
+keycloak-server  | 2025-02-18 05:40:05,485 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-19) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:40:05,504 WARN  [org.keycloak.events] (executor-thread-19) type="LOGIN_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="cookie_not_found"
+keycloak-server  | 2025-02-18 05:40:11,994 WARN  [org.keycloak.events] (executor-thread-19) type="USER_INFO_REQUEST_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:40:11 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:40:12,014 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-19) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:40:14,724 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-26) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:40:15,670 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-24) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:40:51,054 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-19) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:40:51,078 WARN  [org.keycloak.events] (executor-thread-19) type="LOGIN_ERROR", realmId="8a27f2fa-0f8a-471b-b7e8-83e294e4bde5", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="cookie_not_found"
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 3/3
+ ✔ Container nginx-server     Stopped                                                                                                                                                            0.2s 
+ ✔ Container site3-backend    Stopped                                                                                                                                                            0.1s 
+ ✔ Container keycloak-server  Stopped                                                                                                                                                            0.5s 
+➜  nginx-keycloak git:(main) ✗ docker-compose down
+
+[+] Running 4/4
+ ✔ Container nginx-server            Removed                                                                                                                                                     0.0s 
+ ✔ Container site3-backend           Removed                                                                                                                                                     0.0s 
+ ✔ Container keycloak-server         Removed                                                                                                                                                     0.0s 
+ ✔ Network nginx-keycloak_mynetwork  Removed                                                                                                                                                     0.3s 
+➜  nginx-keycloak git:(main) ✗ docker-compose up  
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               0.5s 
+[+] Running 4/4
+ ✔ Network nginx-keycloak_mynetwork  Created                                                                                                                                                     0.1s 
+ ✔ Container site3-backend           Created                                                                                                                                                     0.1s 
+ ✔ Container keycloak-server         Created                                                                                                                                                     0.1s 
+ ✔ Container nginx-server            Created                                                                                                                                                     0.1s 
+Attaching to keycloak-server, nginx-server, site3-backend
+site3-backend    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+site3-backend    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+site3-backend    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+site3-backend    | /docker-entrypoint.sh: Configuration complete; ready for start up
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: using the "epoll" event method
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: nginx/1.27.4
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: OS: Linux 6.12.5-linuxkit
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker processes
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 29
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 30
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 31
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 32
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 33
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 34
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 35
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 36
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 37
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 38
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 39
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 40
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 41
+site3-backend    | 2025/02/18 05:43:21 [notice] 1#1: start worker process 42
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+➜  nginx-keycloak git:(main) ✗ docker-compose down
+
+➜  nginx-keycloak git:(main) ✗ docker-compose up  
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               0.5s 
+[+] Running 4/4
+ ✔ Network nginx-keycloak_mynetwork  Created                                                                                                                                                     0.1s 
+ ✔ Container site3-backend           Created                                                                                                                                                     0.0s 
+ ✔ Container keycloak-server         Created                                                                                                                                                     0.0s 
+ ✔ Container nginx-server            Created                                                                                                                                                     0.1s 
+Attaching to keycloak-server, nginx-server, site3-backend
+site3-backend    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+site3-backend    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+site3-backend    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+site3-backend    | /docker-entrypoint.sh: Configuration complete; ready for start up
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: using the "epoll" event method
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: nginx/1.27.4
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: OS: Linux 6.12.5-linuxkit
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker processes
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 29
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 30
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 31
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 32
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 33
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 34
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 35
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 36
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 37
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 38
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 39
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 40
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 41
+site3-backend    | 2025/02/18 05:45:56 [notice] 1#1: start worker process 42
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+keycloak-server  | Updating the configuration and installing your custom providers, if any. Please wait.
+keycloak-server  | 2025-02-18 05:46:00,716 WARN  [io.qua.config] (build-31) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:46:04,068 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-76) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+keycloak-server  | 2025-02-18 05:46:04,072 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-76) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+keycloak-server  | 2025-02-18 05:46:22,154 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 23137ms
+keycloak-server  | Running the server in development mode. DO NOT use this configuration in production.
+keycloak-server  | 2025-02-18 05:46:23,694 ERROR [org.keycloak.quarkus.runtime.configuration.mappers.PropertyMappers] (main) Hostname v1 options [proxy, hostname-strict-https] are still in use, please review your configuration
+keycloak-server  | 2025-02-18 05:46:23,812 WARN  [io.quarkus.config] (main) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:46:24,172 INFO  [org.keycloak.url.HostnameV2ProviderFactory] (main) If hostname is specified, hostname-strict is effectively ignored
+keycloak-server  | 2025-02-18 05:46:26,368 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+keycloak-server  | 2025-02-18 05:46:26,438 INFO  [io.agroal.pool] (JPA Startup Thread) Datasource '<default>': Initial size smaller than min. Connections will be created when necessary
+keycloak-server  | 2025-02-18 05:46:26,460 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+keycloak-server  | 2025-02-18 05:46:26,661 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+keycloak-server  | 2025-02-18 05:46:26,955 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (ForkJoinPool.commonPool-worker-1) ISPN000107: Retrieving transaction manager Transaction: unknown
+keycloak-server  | 2025-02-18 05:46:28,304 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+keycloak-server  | 2025-02-18 05:46:31,638 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:46:32,080 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_207442, Site name: null
+keycloak-server  | 2025-02-18 05:46:32,277 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+keycloak-server  | 2025-02-18 05:46:32,375 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+keycloak-server  | 2025-02-18 05:46:33,791 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN' is deprecated, use 'KC_BOOTSTRAP_ADMIN_USERNAME' instead
+keycloak-server  | 2025-02-18 05:46:33,792 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN_PASSWORD' is deprecated, use 'KC_BOOTSTRAP_ADMIN_PASSWORD' instead
+keycloak-server  | 2025-02-18 05:46:34,019 INFO  [org.keycloak.services] (main) KC-SERVICES0077: Created temporary admin user with username admin
+keycloak-server  | 2025-02-18 05:46:34,059 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:46:34,186 INFO  [io.quarkus] (main) Keycloak 26.1.2 on JVM (powered by Quarkus 3.15.3) started in 11.596s. Listening on: http://0.0.0.0:8080
+keycloak-server  | 2025-02-18 05:46:34,187 INFO  [io.quarkus] (main) Profile dev activated. 
+keycloak-server  | 2025-02-18 05:46:34,187 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, narayana-jta, opentelemetry, reactive-routes, rest, rest-jackson, smallrye-context-propagation, vertx]
+keycloak-server  | 2025-02-18 05:46:39,533 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-1) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:46:42,773 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-4) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:42,181 WARN  [org.keycloak.events] (executor-thread-10) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:42 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:42,210 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-10) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:47,671 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,004 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=998fc8b6-65eb-4bde-81d2-4e9221260d09.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,017 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,106 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=2d4c5662-1e41-4cd5-b33b-9c4184217b82.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,114 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,136 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=534437d3-a003-4e32-9a31-c10077332feb.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,143 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,175 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=b4d0c6ab-f2c5-41a9-a67c-a673fd131274.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,181 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,198 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=c158441d-8361-40d8-8f48-57e52c728981.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,204 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,222 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=019b377a-4aa4-47fc-9ad1-23fe279f5d62.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,228 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,245 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=9131a997-a2e7-4b56-9f2a-d2cdaad4d1ba.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,253 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,272 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=d3379130-2bf5-4e9f-8cb3-f420c97af9af.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,279 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,295 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=5093cbe4-51fd-488a-8283-ab43d419d6cd.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,302 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,319 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=c7190384-a8fd-4620-ae33-d33c587110a6.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:48:50,326 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-11) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:48:50,344 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="a6adf716-33cb-4a73-bd76-6858aae849c5", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:48:50 +0000] "GET /?session_state=f9fa2539-bab6-44df-8f08-5845fdf92feb&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=0d3e9284-fce1-406c-b609-0155614ed80d.f9fa2539-bab6-44df-8f08-5845fdf92feb.c432988d-d9ca-4141-b9b8-a7eefafc5ca1 HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 3/3
+ ✔ Container nginx-server     Stopped                                                                                                                                                            0.2s 
+ ✔ Container site3-backend    Stopped                                                                                                                                                            0.2s 
+ ✔ Container keycloak-server  Stopped                                                                                                                                                            0.5s 
+➜  nginx-keycloak git:(main) ✗ docker-compose down
+
+[+] Running 4/4
+ ✔ Container nginx-server            Removed                                                                                                                                                     0.0s 
+ ✔ Container site3-backend           Removed                                                                                                                                                     0.0s 
+ ✔ Container keycloak-server         Removed                                                                                                                                                     0.0s 
+ ✔ Network nginx-keycloak_mynetwork  Removed                                                                                                                                                     0.3s 
+➜  nginx-keycloak git:(main) ✗ docker-compose up  
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               1.0s 
+[+] Running 4/4
+ ✔ Network nginx-keycloak_mynetwork  Created                                                                                                                                                     0.1s 
+ ✔ Container site3-backend           Created                                                                                                                                                     0.0s 
+ ✔ Container keycloak-server         Created                                                                                                                                                     0.0s 
+ ✔ Container nginx-server            Created                                                                                                                                                     0.0s 
+Attaching to keycloak-server, nginx-server, site3-backend
+site3-backend    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+site3-backend    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+site3-backend    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+site3-backend    | /docker-entrypoint.sh: Configuration complete; ready for start up
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: using the "epoll" event method
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: nginx/1.27.4
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: OS: Linux 6.12.5-linuxkit
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker processes
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 29
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 30
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 31
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 32
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 33
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 34
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 35
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 36
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 37
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 38
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 39
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 40
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 41
+site3-backend    | 2025/02/18 05:52:13 [notice] 1#1: start worker process 42
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+keycloak-server  | Updating the configuration and installing your custom providers, if any. Please wait.
+keycloak-server  | 2025-02-18 05:52:17,962 WARN  [io.qua.config] (build-13) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:52:21,397 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-10) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+keycloak-server  | 2025-02-18 05:52:21,400 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-10) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+keycloak-server  | 2025-02-18 05:52:40,400 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 24337ms
+keycloak-server  | Running the server in development mode. DO NOT use this configuration in production.
+keycloak-server  | 2025-02-18 05:52:41,967 ERROR [org.keycloak.quarkus.runtime.configuration.mappers.PropertyMappers] (main) Hostname v1 options [proxy, hostname-strict-https] are still in use, please review your configuration
+keycloak-server  | 2025-02-18 05:52:42,085 WARN  [io.quarkus.config] (main) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 05:52:42,452 INFO  [org.keycloak.url.HostnameV2ProviderFactory] (main) If hostname is specified, hostname-strict is effectively ignored
+keycloak-server  | 2025-02-18 05:52:44,685 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+keycloak-server  | 2025-02-18 05:52:44,757 INFO  [io.agroal.pool] (JPA Startup Thread) Datasource '<default>': Initial size smaller than min. Connections will be created when necessary
+keycloak-server  | 2025-02-18 05:52:44,777 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+keycloak-server  | 2025-02-18 05:52:44,967 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+keycloak-server  | 2025-02-18 05:52:45,260 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (ForkJoinPool.commonPool-worker-1) ISPN000107: Retrieving transaction manager Transaction: unknown
+keycloak-server  | 2025-02-18 05:52:46,623 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+keycloak-server  | 2025-02-18 05:52:50,000 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:52:50,405 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_512884, Site name: null
+keycloak-server  | 2025-02-18 05:52:50,592 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+keycloak-server  | 2025-02-18 05:52:50,676 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+keycloak-server  | 2025-02-18 05:52:52,321 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN' is deprecated, use 'KC_BOOTSTRAP_ADMIN_USERNAME' instead
+keycloak-server  | 2025-02-18 05:52:52,322 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN_PASSWORD' is deprecated, use 'KC_BOOTSTRAP_ADMIN_PASSWORD' instead
+keycloak-server  | 2025-02-18 05:52:52,553 INFO  [org.keycloak.services] (main) KC-SERVICES0077: Created temporary admin user with username admin
+keycloak-server  | 2025-02-18 05:52:52,594 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 05:52:52,701 INFO  [io.quarkus] (main) Keycloak 26.1.2 on JVM (powered by Quarkus 3.15.3) started in 11.849s. Listening on: http://0.0.0.0:8080
+keycloak-server  | 2025-02-18 05:52:52,701 INFO  [io.quarkus] (main) Profile dev activated. 
+keycloak-server  | 2025-02-18 05:52:52,702 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, narayana-jta, opentelemetry, reactive-routes, rest, rest-jackson, smallrye-context-propagation, vertx]
+keycloak-server  | 2025-02-18 05:53:14,865 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-4) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:53:15,270 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-5) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:53:17,844 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-1) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:53:18,752 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-3) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:34 +0000] "GET / HTTP/1.1" 200 26 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server     | 192.168.65.1 - user1 [18/Feb/2025:05:54:35 +0000] "GET / HTTP/1.1" 200 38 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:37 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:37 +0000] "GET /apple-touch-icon.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:37 +0000] "GET /favicon.ico HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:37 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:37 +0000] "GET /apple-touch-icon.png HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:37 +0000] "GET /favicon.ico HTTP/1.1" 401 179 "-" "com.apple.WebKit.Networking/20620.2.4.11.5 Network/4277.81.1 macOS/15.3.1"
+keycloak-server  | 2025-02-18 05:54:44,986 WARN  [org.keycloak.events] (executor-thread-3) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:45 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:45,023 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-3) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:54,347 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,524 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=faec8fb7-a54b-44c0-930e-315d976696f9.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,540 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,572 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=fc75426c-9ba7-464c-b32a-f001dabb56c7.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,582 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,603 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=77d229da-12c4-415b-ad7b-a18b40523371.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,611 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,633 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=cb8791ce-b1ec-4b0c-8a04-dd031e75dd7b.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,640 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,658 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=0d65277a-b300-4c2c-8f74-964bf6d5d2e3.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,667 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,695 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=f3c6f78b-146f-4a6c-b108-af144e2065f1.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,703 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,726 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=63c951c3-fc9f-41f0-b00b-b0f5f95a2a0b.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,733 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,750 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:05:54:56 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=e3e778aa-a099-44e8-bd8f-54da57ae116f.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 05:54:56,757 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 05:54:56,772 WARN  [org.keycloak.events] (executor-thread-9) type="USER_INFO_REQUEST_ERROR", realmId="6f46f2c8-d187-4e59-ba0f-59b096e85f8e", realmName="myrealm", client
+➜  nginx-keycloak git:(main) ✗ mkdir -p ./nginx/certs
+➜  nginx-keycloak git:(main) ✗ openssl req -x509 -newkey rsa:4096 -keyout ./nginx/certs/nginx.key -out ./nginx/certs/nginx.crt -days 365 -nodes -subj "/CN=localhost"
+
+.+..............+......+......+......+.......+...+...+..+............+.......+...+++++++++++++++++++++++++++++++++++++++++++++*........+........+.........+....+.....+.+.....+....+..+.......+..+......+...+...............+......+.+...+......+.....+.............+...+..+...+...+.........+.............+..+...+...+.+...+..+.+..................+.....+....+...+...+.........+......+.........+.....+...+...+....+++++++++++++++++++++++++++++++++++++++++++++*.........+...+......+.........+.....+.+........+.+..+....+...+........+....+...+......+...............+...........+....+.........+......+............+..+.+...............+..+...+......+............................+.....+..........+........+...............+....+........+..................+....+......+.....+..........+...+.....+....+...............+.....+.......+......+...+...........+..................+.............+.........+......+++++
+.+..................+.......+........+.........+....+.....+....+..+.+..+...+....+........+......+.........+...+.........+...+.+.....+.+.....+.+...+...........................+...+.....+..........+...........+...+.......+........+.+.....+....+..+.........+......+.+...+..+...+....+...+++++++++++++++++++++++++++++++++++++++++++++*....+....+..............+.+.....................+...+..+.............+..+...+...+.......+..+................+.....+....+........+............+.+...+..+...+++++++++++++++++++++++++++++++++++++++++++++*.......+............+.........+.....+...................+...+...+.....+......+......+.........+...+++++
+-----
+➜  nginx-keycloak git:(main) ✗ docker-compose up
+[+] Running 1/1
+ ✔ keycloak Pulled                                                                                                                                                                               0.4s 
+[+] Running 4/4
+ ✔ Network nginx-keycloak_mynetwork  Created                                                                                                                                                     0.1s 
+ ✔ Container keycloak-server         Created                                                                                                                                                     0.0s 
+ ✔ Container site3-backend           Created                                                                                                                                                     0.0s 
+ ✔ Container nginx-server            Created                                                                                                                                                     0.0s 
+Attaching to keycloak-server, nginx-server, site3-backend
+site3-backend    | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+site3-backend    | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+site3-backend    | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+site3-backend    | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+site3-backend    | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+site3-backend    | /docker-entrypoint.sh: Configuration complete; ready for start up
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: using the "epoll" event method
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: nginx/1.27.4
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: OS: Linux 6.12.5-linuxkit
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker processes
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 29
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 30
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 31
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 32
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 33
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 34
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 35
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 36
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 37
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 38
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 39
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 40
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 41
+site3-backend    | 2025/02/18 06:01:20 [notice] 1#1: start worker process 42
+nginx-server     | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+nginx-server     | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+nginx-server     | 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+nginx-server     | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+nginx-server     | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+nginx-server     | /docker-entrypoint.sh: Configuration complete; ready for start up
+keycloak-server  | Updating the configuration and installing your custom providers, if any. Please wait.
+keycloak-server  | 2025-02-18 06:01:25,558 WARN  [io.qua.config] (build-7) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 06:01:28,828 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-3) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+keycloak-server  | 2025-02-18 06:01:28,834 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-3) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+keycloak-server  | 2025-02-18 06:01:46,826 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 23167ms
+keycloak-server  | Running the server in development mode. DO NOT use this configuration in production.
+keycloak-server  | 2025-02-18 06:01:48,368 ERROR [org.keycloak.quarkus.runtime.configuration.mappers.PropertyMappers] (main) Hostname v1 options [proxy, hostname-strict-https] are still in use, please review your configuration
+keycloak-server  | 2025-02-18 06:01:48,481 WARN  [io.quarkus.config] (main) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+keycloak-server  | 2025-02-18 06:01:49,305 INFO  [org.keycloak.url.HostnameV2ProviderFactory] (main) If hostname is specified, hostname-strict is effectively ignored
+keycloak-server  | 2025-02-18 06:01:51,074 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+keycloak-server  | 2025-02-18 06:01:51,149 INFO  [io.agroal.pool] (JPA Startup Thread) Datasource '<default>': Initial size smaller than min. Connections will be created when necessary
+keycloak-server  | 2025-02-18 06:01:51,169 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+nginx-server     | 2025/02/18 06:01:51 [error] 29#29: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 192.168.65.1, server: site3.local, request: "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=da4fb639-89c9-468e-ac48-d4e1fa10aa16.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1", subrequest: "/auth", upstream: "http://172.23.0.2:8080/realms/myrealm/protocol/openid-connect/userinfo", host: "site3.local"
+nginx-server     | 2025/02/18 06:01:51 [error] 29#29: *1 auth request unexpected status: 502 while sending to client, client: 192.168.65.1, server: site3.local, request: "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=da4fb639-89c9-468e-ac48-d4e1fa10aa16.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1", host: "site3.local"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:01:51 +0000] "GET /?session_state=e735ebbc-f11b-4df1-927a-03f91f051ff1&iss=http%3A%2F%2Fkeycloak-server%3A8080%2Frealms%2Fmyrealm&code=da4fb639-89c9-468e-ac48-d4e1fa10aa16.e735ebbc-f11b-4df1-927a-03f91f051ff1.191cbb9b-30cc-49af-a295-d0ce8229b80b HTTP/1.1" 500 177 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 06:01:51,386 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+keycloak-server  | 2025-02-18 06:01:51,686 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (ForkJoinPool.commonPool-worker-1) ISPN000107: Retrieving transaction manager Transaction: unknown
+keycloak-server  | 2025-02-18 06:01:51,979 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+keycloak-server  | 2025-02-18 06:01:53,052 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+keycloak-server  | 2025-02-18 06:01:56,452 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 06:01:56,857 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_404360, Site name: null
+keycloak-server  | 2025-02-18 06:01:57,118 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+keycloak-server  | 2025-02-18 06:01:58,725 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN' is deprecated, use 'KC_BOOTSTRAP_ADMIN_USERNAME' instead
+keycloak-server  | 2025-02-18 06:01:58,726 WARN  [org.keycloak.services] (main) KC-SERVICES0110: Environment variable 'KEYCLOAK_ADMIN_PASSWORD' is deprecated, use 'KC_BOOTSTRAP_ADMIN_PASSWORD' instead
+keycloak-server  | 2025-02-18 06:01:58,937 INFO  [org.keycloak.services] (main) KC-SERVICES0077: Created temporary admin user with username admin
+keycloak-server  | 2025-02-18 06:01:58,976 WARN  [io.agroal.pool] (main) Datasource '<default>': JDBC resources leaked: 1 ResultSet(s) and 0 Statement(s)
+keycloak-server  | 2025-02-18 06:01:59,105 INFO  [io.quarkus] (main) Keycloak 26.1.2 on JVM (powered by Quarkus 3.15.3) started in 11.840s. Listening on: http://0.0.0.0:8080
+keycloak-server  | 2025-02-18 06:01:59,105 INFO  [io.quarkus] (main) Profile dev activated. 
+keycloak-server  | 2025-02-18 06:01:59,105 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, narayana-jta, opentelemetry, reactive-routes, rest, rest-jackson, smallrye-context-propagation, vertx]
+keycloak-server  | 2025-02-18 06:02:08,693 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-2) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 06:02:09,235 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-3) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 06:02:12,999 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-2) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 06:03:35,728 WARN  [org.keycloak.events] (executor-thread-1) type="LOGIN_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="invalid_redirect_uri", redirect_uri="http://site3.local/"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:03:48 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:03:51 +0000] "GET / HTTP/1.1" 401 179 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:03:51 +0000] "GET / HTTP/1.1" 401 179 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:03:51 +0000] "GET / HTTP/1.1" 401 179 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 06:03:56,300 WARN  [org.keycloak.events] (executor-thread-1) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:03:56 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 06:04:00,947 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-9) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 06:04:01,155 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-8) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 06:04:03,834 WARN  [org.keycloak.cookie.DefaultCookieProvider] (executor-thread-7) Non-secure context detected; cookies are not secured, and will not be available in cross-origin POST requests
+keycloak-server  | 2025-02-18 06:04:41,415 WARN  [org.keycloak.events] (executor-thread-11) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:04:41 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 06:05:07,421 WARN  [org.keycloak.events] (executor-thread-11) type="LOGIN_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="invalid_redirect_uri", redirect_uri="https://site3.local/"
+keycloak-server  | 2025-02-18 06:05:16,251 WARN  [org.keycloak.events] (executor-thread-13) type="LOGIN_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="myclient", userId="null", ipAddress="192.168.65.1", error="invalid_redirect_uri", redirect_uri="http://site3.local/"
+keycloak-server  | 2025-02-18 06:05:40,728 WARN  [org.keycloak.events] (executor-thread-12) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:05:40 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 06:07:47,838 WARN  [org.keycloak.events] (executor-thread-12) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Failed to parse JWT", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:07:47 +0000] "GET / HTTP/1.1" 302 145 "-" "curl/8.11.1"
+keycloak-server  | 2025-02-18 06:08:09,085 WARN  [org.keycloak.events] (executor-thread-12) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Failed to parse JWT", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:08:09 +0000] "GET / HTTP/1.1" 302 145 "-" "curl/8.11.1"
+keycloak-server  | 2025-02-18 06:12:38,098 WARN  [org.keycloak.events] (executor-thread-17) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:12:38 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+keycloak-server  | 2025-02-18 06:12:42,684 WARN  [org.keycloak.events] (executor-thread-17) type="USER_INFO_REQUEST_ERROR", realmId="f045ec9a-ab41-4c44-a9e9-afaea6be3d0e", realmName="myrealm", clientId="null", userId="null", ipAddress="172.23.0.4", error="invalid_token", reason="Missing token", auth_method="validate_access_token"
+nginx-server     | 192.168.65.1 - - [18/Feb/2025:06:12:42 +0000] "GET / HTTP/1.1" 302 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15"
+
+
+v View in Docker Desktop   o View Config   w Enable Watch
