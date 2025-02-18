@@ -11,41 +11,36 @@ services:
       - ./nginx/site2.conf:/etc/nginx/conf.d/site2.conf
       - ./nginx/site3.conf:/etc/nginx/conf.d/site3.conf
       - ./nginx/auth/.htpasswd:/etc/nginx/.htpasswd
-      - ./nginx/certs:/etc/nginx/certs
+      - ./certs:/etc/nginx/certs
       - ./nginx/html:/usr/share/nginx/html
     depends_on:
       - keycloak
-      - site3-backend
     restart: unless-stopped
     networks:
       - mynetwork
 
   keycloak:
     platform: linux/amd64
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:26.1.2
     container_name: keycloak-server
-    command: start-dev --import-realm
+    # command: start-dev --import-realm
+    command: start --https-certificate-file=/opt/keycloak/conf/server.crt --https-certificate-key-file=/opt/keycloak/conf/server.key --hostname-strict=false --import-realm
     environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
       - KC_HOSTNAME=keycloak-server
       - KC_PROXY=edge
       - KC_HOSTNAME_STRICT=false
       - KC_HOSTNAME_STRICT_HTTPS=false   
-      - KC_SSL_REQUIRED=external  # Allow HTTP for now
-      - KC_HTTP_ENABLED=true  # Allow HTTP (if not using HTTPS yet)
+      # - KC_SSL_REQUIRED=external  # Allow HTTP for now
+      # - KC_HTTP_ENABLED=true  # Allow HTTP (if not using HTTPS yet)
+      - KC_HTTPS_CERTIFICATE_FILE=/opt/keycloak/conf/server.crt
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/opt/keycloak/conf/server.key
     volumes:
       - ./keycloak:/opt/keycloak/data/import
+      - ./certs/:/opt/keycloak/conf
     ports:
-      - "8080:8080"
-    networks:
-      - mynetwork
-
-  site3-backend:
-    image: nginx:latest
-    container_name: site3-backend
-    volumes:
-      - ./nginx/html/site3:/usr/share/nginx/html
+      - "8443:8443"
     networks:
       - mynetwork
 

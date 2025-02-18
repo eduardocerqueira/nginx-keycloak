@@ -59,48 +59,23 @@
     "clients": [
         {
             "clientId": "myclient",
+            "name": "development client",
+            "description": "testing and troubleshoting",      
             "enabled": true,
             "publicClient": true,
+            "clientAuthenticatorType": "client-secret",
+            "secret": "4HHtgDbEHipW8VBWalzby5cxH7X6TjkC",      
             "baseUrl": "/",
             "adminUrl" : "",
             "baseUrl" : "",
             "redirectUris": [
-                "http://site3.local/*"
-            ],
-            "webOrigins": []
-        },
-        {
-            "clientId": "nodejs-apiserver",
-            "enabled": true,
-            "secret": "secret",
-            "redirectUris": [
-              "http://localhost:3000/*"
+                "https://site3.local/callback/*"
             ],
             "webOrigins": [
-              "http://localhost:3000/*"
+              "https://site3.local"
             ],
-            "serviceAccountsEnabled": true,
-            "authorizationServicesEnabled": true,
-            "authorizationSettings": {
-              "resources": [
-                {
-                  "name": "resource",
-                  "type": "urn:nodejs-apiserver:resources:default",
-                  "ownerManagedAccess": false,
-                  "uris": [
-                    "/*"
-                  ],
-                  "scopes": [
-                    {
-                      "name": "view"
-                    },
-                    {
-                      "name": "write"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+            "standardFlowEnabled": true,
+            "directAccessGrantsEnabled": true
+        }        
     ]
 }
